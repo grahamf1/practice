@@ -1,14 +1,18 @@
 pipeline {
-    agent any 
+    agent { label 'agent-1' }  // Replace 'your-agent-label' with the actual label of your agent
     stages {
-        stage('Static Analysis') {
-            steps {
-                echo 'Run the static analysis to the code' 
-            }
-        }
         stage('Containerise') {
             steps {
-                echo 'Containerise the code in Docker' 
+                script {
+                    // Print a message
+                    echo 'Containerising the Flask app in Docker'
+
+                    // Build Docker image
+                    sh 'docker build -t flask-app:latest .'
+
+                    // Optional: run the container to verify
+                    sh 'docker run -d -p 5001:5001 flask-app'
+                }
             }
         }
     }
