@@ -8,10 +8,10 @@ pipeline {
                     echo 'Containerising the Flask app in Docker'
 
                     // Build Docker image
-                    sh 'docker build -t flask-app:latest .'
+                    sh 'docker build -t my_app .'
 
                     // Optional: run the container to verify
-                    sh 'docker run -d -p 5001:5001 flask-app'
+                    sh 'docker run -d -p 5001:5001 my_app'
                 }
             }
         }
